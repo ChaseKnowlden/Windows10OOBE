@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <!-- WinJS references -->
+    <script src="/Microsoft.WinJS-reduced/js/base.js"></script>
+
+    <!-- requirejs references -->
+    <script src="/core/js/require-helpers.js"></script>
+    <script src="/core/js/requirePath-config-core.js"></script>
+    <script data-main="/webapps/inclusiveOobe/js/autopilotwhiteglovelanding-page.js" src="/lib/require.js"></script>
+    <style>        
+        .category-box table {
+            width: 100%;
+        }
+
+        td:nth-child(1) {
+            text-align: right;
+            padding-right: 1.5em;
+            padding-bottom: 1.5em;
+            font-family: 'Segoe UI Bold';
+        }
+
+        td:nth-child(2) {
+            padding-bottom: 1.5em;
+            max-width: 50%;
+            font-family: 'Segoe UI Semibold';
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .category-box {
+            width: 100%;
+            margin-top: 10%;
+            margin-left: 15%;
+        }
+
+        .qr {
+            max-height: 50%;
+            max-width: 50%;
+            display: block; 
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 15px;
+        }
+
+        .qr-category-container {
+            height: 50%;
+        }
+        
+        .right {
+            float: right;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .error {
+            color: #ffff00;
+        }
+    </style>
+</head>
+<body class="webapp-inner">
+    <div class="body-container">
+        <div class="container-content no-scroll">
+            <oobe-header params="title: title"></oobe-header>
+            <div class="qr-category-container">
+                <div class="content-box left" id="categoriesBox">
+                    <table class="category-box" id="categories">
+                        <tr>
+                            <td class="category" data-bind="text: organizationText"></td>
+                            <td class="status" id="organization" data-bind="text: organizationName"></td>
+                        </tr>
+                        <tr>
+                            <td class="category" data-bind="text: profileText"></td>
+                            <td class="status" id="profile" data-bind="text: profileName"></td>
+                        </tr>
+                        <tr>
+                            <td class="category" data-bind="text: assignedUserText"></td>
+                            <td class="status" id="assignedUser" data-bind="text: assignedUserName"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="content-box right" id="qrContent">
+                    <img class="qr" id="qrAssignmentCode" />
+                </div>
+            </div>
+            <div class="control-progress" data-bind="visible: IsDJPPLoading">
+                <progress class="win-ring win-medium withText"></progress>
+            </div>
+            <p data-bind="text: subHeaderText, css: provisioningTextStyle"></p>
+        </div>
+        <oobe-footer params="flexStartHyperLinks: flexStartHyperLinks, flexEndButtons: flexEndButtons"></oobe-footer>
+    </div>
+</body>
+</html>

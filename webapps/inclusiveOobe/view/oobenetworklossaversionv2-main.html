@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--inclusive common css-->
+    <link href="/webapps/inclusiveOobe/css/inclusive-common.css" rel="stylesheet">
+
+    <!-- WinJS references -->
+    <script src="/Microsoft.WinJS-reduced/js/base.js"></script>
+
+    <!-- requirejs references -->
+    <script src="/core/js/require-helpers.js"></script>
+    <script src="/core/js/requirePath-config-core.js"></script>
+    <script data-main="/webapps/inclusiveOobe/js/oobenetworklossaversion-page.js" src="/lib/require.js"></script>
+</head>
+<body class="webapp-inner">
+    <script type="text/html" id="nla-TableHeader-Template">
+        <tr>
+            <th></th>
+            <th data-bind="html: $data.featureHeader"></th>
+        </tr>
+    </script>
+
+    <script type="text/html" id="nla-TableItem-Template">
+        <tr>
+            <td>
+                <div class="list-item non-interactive one-column" data-bind="attr: { 'aria-label': $data.featureTitle }">
+                    <div class="container-icon" role="presentation">
+                        <div data-bind="css: $data.featureClass, attr: { 'aria-label': $data.featureTitle }" role="img"></div>
+                    </div>
+                    <div class="container-text">
+                        <div class="containertext-title wide-column" data-bind="text: $data.featureTitle"></div>
+                        <div class="containertext-item wide-column" data-bind="text: $data.featureDesc"></div>
+                    </div>
+                </div>
+            </td>
+            <td align="center">
+                <div class="list-item non-interactive" role="presentation" style="display: inline-block">
+                    <div class="container-icon" data-bind="css: $root.featureOnForFullSetup, attr: { 'aria-label': $root.checkBoxAriaLabel }" role="img"></div>
+                </div>
+            </td>
+        </tr>
+    </script>
+
+    <div class="body-container">
+        <div class="container-content_FitForSmallVerticalResolution">
+            <oobe-header params="title: $root.title, subtitle: $root.descriptionText"></oobe-header>
+            <table tabIndex="0"
+                   data-bind="template: { name: getFeatureTemplateName, foreach: $root.featureContents, as: 'featureContent'}, attr: { 'aria-label': $root.titlev2 }">
+            </table>
+        </div>
+        <oobe-footer params="flexStartHyperLinks: flexStartHyperLinks, flexEndButtons: $root.flexEndButtons"></oobe-footer>
+    </div>
+</body>
+</html>

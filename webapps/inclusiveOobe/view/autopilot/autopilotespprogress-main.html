@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en" id="_htmlRoot" xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="../../css/inclusive-common.css" />
+        <!-- WinJS references -->
+        <script src="/Microsoft.WinJS-reduced/js/base.js"></script>
+
+        <!-- requirejs references -->
+        <script src="/core/js/require-helpers.js"></script>
+        <script src="/core/js/requirePath-config-core.js"></script>
+        <script data-main="/webapps/inclusiveOobe/js/autopilot/autopilotespprogress-page.js" src="/lib/require.js"></script>
+
+        <style>
+            .glyph {
+                font-family: "OobeMDL2";
+                font-style: normal;
+                font-size: 48px;
+                color: #ffffff;
+            }
+
+            .inactive {
+                opacity: 0.6;
+            }
+
+            .icon-gears:before {
+                content: "\E713";
+            }
+
+            .icon-devices:before {
+                content: "\E975";
+            }
+
+            .icon-users:before {
+                content: "\E716";
+            }
+
+            .icon-base:before {
+                content: "\F136";
+            }
+
+            .icon-fill:before {
+                content: "\F137";
+            }
+
+            .icon-checkmark:before {
+                content: "\F13E";
+                left: 36px;
+                font-size: 24px;
+            }
+
+            .icon-exmark:before {
+                content: "\F13D";
+                font-size: 24px;
+            }
+
+            .base,
+            .fill,
+            .overlay {
+                left: 30px;
+                margin-top: 18px;
+                position: absolute;
+                font-size: 24px;
+            }
+
+            .base {
+                z-index: 2;
+            }
+
+            .fill {
+                z-index: 3;
+            }
+
+            .overlay {
+                z-index: 4;
+            }
+
+            .success {
+                color: #008a17;
+            }
+
+            .failure {
+                color: #d82128;
+            }
+
+            td {
+                border: none;
+                vertical-align: top;
+                padding-bottom: 2.5em;
+                padding-left: 0;
+                margin-left: 0;
+            }
+
+            .glyph-cell {
+                padding-top: 1em;
+            }
+
+            .status,
+            div > p {
+                opacity: 0.6;
+                margin-bottom: 0px;
+                margin-top: 0px;
+                padding-left: 16px;
+            }
+
+            .category {
+                font-family: 'Segoe UI Semibold';
+                padding-left: 16px;
+            }
+
+            .error {
+                color: #ffff00;
+            }
+        </style>
+    </head>
+
+    <body class="webapp-inner">
+        <div class="body-container">
+            <div class="container-content">
+                <oobe-header params="title: pageTitle, subtitle: pageLeadText"></oobe-header>
+
+                <div class="content-box">
+                    <div class="scroll-view" role="group">
+                        <table id="categoriesTable"></table>
+                    </div>
+                </div>
+
+                <div class="template-tooltip tooltipType_error" style="padding-top: 8px" data-bind="text: errorMessage"></div>
+                <div class="template-tooltip tooltipType_error" style="padding-top: 8px" data-bind="text: infoMessage"></div>
+            </div>
+
+            <oobe-footer params="flexStartHyperLinks: flexStartHyperLinks, flexEndButtons: flexEndButtons"></oobe-footer>
+        </div>
+    </body>
+
+</html>

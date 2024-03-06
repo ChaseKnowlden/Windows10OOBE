@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--inclusive common css-->
+    <link href="/webapps/inclusiveOobe/css/inclusive-common.css" rel="stylesheet">
+
+    <!-- WinJS references -->
+    <script src="/Microsoft.WinJS-reduced/js/base.js"></script>
+
+    <!-- requirejs references -->
+    <script src="/core/js/require-helpers.js"></script>
+    <script src="/core/js/requirePath-config-core.js"></script>
+    <script data-main="/webapps/inclusiveOobe/js/oobeactivitysyncconsent-page.js" src="/lib/require.js"></script>
+</head>
+<body class="webapp-inner">
+    <div class="body-container">
+        <div class="oobe-panel taskFlowPanel" data-panel-index="0" data-bind="panelIndexVisible: $root.currentPanelIndex">
+            <div id="mainPage" class="container-content">
+                <oobe-header params="title: $root.resources.activitiesHeading"></oobe-header>
+                <div class="icon-container">
+                    <img data-bind="attr: { alt: $root.resources.activitySyncConsentImageAlt }" id="activity-sync-consent-image" src="/webapps/inclusiveOobe/media/activity-sync-consent.svg" />
+                </div>
+                <div class="opt-in-group" align="center">
+                    <div class="app-body">
+                        <p data-bind="html: $root.resources.activitiesBody"></p>
+                    </div>
+                </div>
+            </div>
+            <oobe-footer params="flexStartButtons: $root.flexStartButtons, flexEndButtons: $root.flexEndButtons"></oobe-footer>
+        </div>
+        <div class="oobe-panel taskFlowPanel" data-panel-index="1" data-bind="panelIndexVisible: $root.currentPanelIndex">
+            <div id="learnMorePage" class="container-content"></div>
+            <oobe-footer params="flexEndButtons: $root.returnToMainButton"></oobe-footer>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <!-- WinJS references -->
+    <script src="/Microsoft.WinJS-reduced/js/base.js"></script>
+
+    <!-- requirejs references -->
+    <script src="/core/js/require-helpers.js"></script>
+    <script src="/core/js/requirePath-config-core.js"></script>
+    <script data-main="/webapps/inclusiveOobe/js/autopilotwhitegloveresult-page.js" src="/lib/require.js"></script>
+    <style>
+        .category-box table {
+            width: 100%;
+        }
+
+        .category-box {
+            width: 100%;
+            margin-top: 10%;
+            margin-left: 15%;
+        }
+
+        td:nth-child(1) {
+            text-align: right;
+            padding-right: 1.5em;
+            padding-bottom: 1.5em;
+            font-family: 'Segoe UI Bold';
+        }
+
+        td:nth-child(2) {
+            padding-bottom: 1.5em;
+            max-width: 50%;
+            font-family: 'Segoe UI Semibold';
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .qr {
+            max-height: 50%;
+            max-width: 50%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 15px;
+        }
+
+        .qr-category-container {
+            height: 50%;
+        }
+
+        .right {
+            float: right;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .error {
+            color: #ffff00;
+        }
+
+        .success-background {
+            background: #007533;
+        }
+
+        .failure-background {
+            background: #750008;
+        }
+
+        .button-group, .space-between {
+            padding: 0 24px;
+        }
+
+        .failure-footer > .button-group button.win-button {
+            background: #5c0006;
+        }
+
+            .failure-footer > .button-group button.win-button.alt-button {
+                background-color: transparent;
+                color: #FFFFFF;
+            }
+
+                .failure-footer > .button-group button.win-button.alt-button[disabled] {
+                    color: GrayText;
+                }
+
+        .success-footer > .button-group button.win-button {
+            background: #005c28;
+        }
+    </style>
+</head>
+<body class="webapp-inner">
+    <div class="body-container" data-bind="css: resultBackground">
+        <div class="container-content no-scroll">
+            <oobe-header params="title: title"></oobe-header>
+            <div class="qr-category-container">
+                <div class="content-box left" id="categoriesBox">
+                    <table class="category-box" id="categories">
+                        <tr>
+                            <td class="category" data-bind="text: organizationText"></td>
+                            <td class="status" id="organization" data-bind="text: organizationName"></td>
+                        </tr>
+                        <tr>
+                            <td class="category" data-bind="text: profileText"></td>
+                            <td class="status" id="profile" data-bind="text: profileName"></td>
+                        </tr>
+                        <tr>
+                            <td class="category" data-bind="text: assignedUserText"></td>
+                            <td class="status" id="assignedUser" data-bind="text: assignedUserName"></td>
+                        </tr>
+                        <tr>
+                            <td class="category" data-bind="text: elapsedTimeText"></td>
+                            <td class="status" id="elapsedTimeNumber" data-bind="text: elapsedTimeNumber"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="content-box right" id="qrContent">
+                    <img class="qr" id="qrAssignmentCode" />
+                </div>
+            </div>
+            <p data-bind="text: subHeaderErrorText"></p>
+            <div class="control-progress" data-bind="visible: isLoading">
+                <progress class="win-ring win-medium withText"></progress>
+            </div>
+            <p data-bind="text: subHeaderText, css: provisioningTextStyle"></p>
+        </div>
+        <oobe-footer params="flexStartHyperLinks: flexStartHyperLinks, flexEndButtons: flexEndButtons" data-bind="css: showResultFooter"></oobe-footer>
+    </div>
+</body>
+</html>

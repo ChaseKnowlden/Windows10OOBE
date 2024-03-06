@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- WinJS references -->
+    <script src="/Microsoft.WinJS-reduced/js/base.js"></script>
+
+    <!-- requirejs references -->
+    <script src="/core/js/require-helpers.js"></script>
+    <script src="/core/js/requirePath-config-core.js"></script>
+
+    <script data-main="/webapps/AntiTheft/js/OobeAntiTheft-page.js" src="/lib/require.js"></script>
+    <title></title>
+</head>
+<body class="webapp-inner oobe-contentview">
+    <div class="body-container">
+        <h2 class="align-center" data-bind="text: title"></h2>
+        <div class="container-content">
+            <div id="AntiTheft-Disambiguation" data-bind="if: showDisambiguation">
+                <div id="Disam-Primary">
+                    <p>
+                        <span data-bind="text: DisambiguationIntro1"></span>
+                        <b><span data-bind="text: AccountString"></span></b>
+                        <span data-bind="text: DisambiguationIntro2"></span>
+                    </p>
+                </div>
+                <div id="Disam-Secondary">
+                    <p data-bind="text: DisambiguationIntro3"></p>
+                </div>
+            </div> <!-- AntiTheft-Disambiguation -->
+            <div id="AntiTheft-Offline" data-bind="if: showOffline">
+                <div>
+                    <p>
+                        <span data-bind="text: offlineIntro"></span>
+                        <b><span data-bind="text: AMCLink"></span></b>
+                        <span data-bind="text:offlineIntro2"></span>
+                    </p>
+                    <div style="margin-left: auto; margin-right: auto;" class="template-input input-centered">
+                        <input class="win-textbox"
+                               data-bind="attr: { placeholder: rKeyText }, textInput: rKeyValue"
+                               size="40"
+                               maxlength="29"
+                               type="text"
+                               autofocus />
+                    </div>
+                </div>
+            </div> <!-- AntiTheft-Offline -->
+            <div class="input-errorDialog" data-bind="if: showError">
+                <div class="errorDialog-dialogRoot tooltipType_error template-tooltip" role="alert">
+                    <p data-bind="text: errorText"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tag needed for CSS to Display Properly. Functions as Div. Due to the Presence on WCOS and Desktop, Cannot use Components due to different versions of KnockoutHelpers -->
+        <oobe-footer>
+            <div class="button-group space-between">
+                <div class="align-self-end" data-bind="if: showDisambiguation">
+                    <button type="button" class="win-button button-primary" data-bind="text: recoveryButtonText, click: navigateToOffline"></button>
+                    <button type="button" class="win-button button-primary" data-bind="enable: hasInternet, text: signInText, click: unlockAntiTheftOnline"></button>
+                </div>
+                <div class="align-self-end win-rightalign" data-bind="if: showOffline">
+                    <button type="button" class="win-button button-primary" data-bind="enable: shouldAllowNext, text: nextText, click: unlockAntiTheftOffline"></button>
+                </div>
+            </div>
+        </oobe-footer>
+    </div> <!-- Body Container -->
+</body>
+</html>

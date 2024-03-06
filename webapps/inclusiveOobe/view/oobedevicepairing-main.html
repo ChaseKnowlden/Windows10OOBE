@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/inclusive-common.css" />
+    <!-- WinJS references -->
+    <script src="/Microsoft.WinJS-reduced/js/base.js"></script>
+
+    <!-- requirejs references -->
+    <script src="/core/js/require-helpers.js"></script>
+    <script src="/core/js/requirePath-config-core.js"></script>
+    <script data-main="/webapps/inclusiveOobe/js/oobedevicepairing-page.js" src="/lib/require.js"></script>
+</head>
+<body class="webapp-inner">
+    <div class="body-container" aria-live="polite">
+        <!-- ko if: isPairing() -->
+        <div class="container-content">
+            <oobe-header params="title: currentAccessory().title || resourceStrings.DefaultPageTitle"></oobe-header>
+            <div class="img-responsive-container-center device-pairing-img">
+                <img class="img-responsive" data-bind="attr: { src: currentAccessoryImages().instructionImageUrl, alt: currentAccessory().instructionText }" />
+            </div>
+            <div class="control-progress">
+                <div data-bind="text: statusText"></div>
+                <progress class="win-progress" data-bind="visible: isWorking"></progress>
+            </div>
+        </div>
+        <oobe-footer params="flexStartButtons: [
+                         {
+                             buttonText: resourceStrings.SkipButtonText,
+                             buttonClickHandler: onSkipClicked.bind($root),
+                             disableControl: disableControl,
+                             autoFocus: true,
+                         }],
+                         flexEndButtons: [
+                         {
+                             buttonText: resourceStrings.NextButtonText,
+                             disableControl: true,
+                         }]"></oobe-footer>
+        <!-- /ko -->
+        <!-- ko if: pairingStatus() == PairingStatusEnum.succeeded -->
+        <div class="container-content">
+            <oobe-header params="title: currentAccessory().title || resourceStrings.DefaultPageTitle"></oobe-header>
+            <div class="img-responsive-container-center">
+                <img class="img-responsive" data-bind="attr: { src: currentAccessoryImages().successImageUrl, alt: currentAccessory().successText }" />
+            </div>
+            <div>
+                <div data-bind="text: statusText"></div>
+            </div>
+        </div>
+        <oobe-footer params="flexEndButtons: [
+                         {
+                             buttonText: resourceStrings.NextButtonText,
+                             buttonClickHandler: onNextClicked.bind($root),
+                             disableControl: disableControl,
+                             autoFocus: true,
+                         }]"></oobe-footer>
+        <!-- /ko -->
+        <!-- ko if: pairingStatus() == PairingStatusEnum.failed -->
+        <div class="container-content">
+            <oobe-header params="title: currentAccessory().title || resourceStrings.DefaultPageTitle"></oobe-header>
+            <div class="img-responsive-container-center">
+                <img class="img-responsive" data-bind="attr: { src: currentAccessoryImages().errorImageUrl, alt: currentAccessory().errorText }" />
+            </div>
+            <div>
+                <div data-bind="text: statusText"></div>
+            </div>
+        </div>
+        <oobe-footer params="flexStartButtons: [
+                         {
+                             buttonText: resourceStrings.SkipButtonText,
+                             buttonClickHandler: onSkipClicked.bind($root),
+                             disableControl: disableControl,
+                             autoFocus: true,
+                         }],
+                         flexEndButtons: [
+                         {
+                             buttonText: resourceStrings.RetryButtonText,
+                             buttonClickHandler: onRetryClicked.bind($root),
+                             disableControl: disableControl,
+                         },
+                         {
+                             buttonText: resourceStrings.NextButtonText,
+                             disableControl: true,
+                         }]"></oobe-footer>
+        <!-- /ko -->
+    </div>
+</body>
+</html>
