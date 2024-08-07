@@ -6,7 +6,7 @@
          xmlns:wincap3="http://schemas.microsoft.com/appx/manifest/foundation/windows10/windowscapabilities/3"
          xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
          IgnorableNamespaces="uap mp wincap wincap3 rescap">
-  <Identity Name="Microsoft.Windows.CloudExperienceHost" Publisher="CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" Version="10.0.19041.3636" ResourceId="neutral" />
+  <Identity Name="Microsoft.Windows.CloudExperienceHost" Publisher="CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" Version="10.0.19041.4239" ResourceId="neutral" />
   <Properties>
     <DisplayName>ms-resource:appDescription</DisplayName>
     <PublisherDisplayName>ms-resource:PublisherDisplayName</PublisherDisplayName>

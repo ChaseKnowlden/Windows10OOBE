@@ -84,7 +84,26 @@ var CloudExperienceHost;
         }
         static GetWiFiHostedApplicationArguments() {
             let propertySet = new Windows.Foundation.Collections.PropertySet();
-            propertySet.insert("IsNetworkRequired", CloudExperienceHostAPI.UtilStaticsCore.isNetworkRequired);
+            if (CloudExperienceHost.FeatureStaging.isOobeFeatureEnabled("Servicing_RequiredNetworkWin10OOBE")) {
+                if (CloudExperienceHost.Storage.SharableData.getValue("retailDemoEnabled")) {
+                    propertySet.insert("IsNetworkRequired", false);
+                }
+                else {
+                    try {
+                        // Wrap new DisabledSkipNetwork call in try/catch in case updated common proxy stub binary isn't present,
+                        // which could be the case in an OOBE ZDP scenario
+                        propertySet.insert("IsNetworkRequired", CloudExperienceHostAPI.UtilStaticsCore.disabledSkipNetwork);
+                    }
+                    catch (e) {
+                        // If DisabledSkipNetwork API can't be called, fall back to existing IsNetworkRequired call
+                        CloudExperienceHost.Telemetry.logEvent("DisabledSkipNetworkApiFailure", CloudExperienceHost.GetJsonFromError(e));
+                        propertySet.insert("IsNetworkRequired", CloudExperienceHostAPI.UtilStaticsCore.isNetworkRequired);
+                    }
+                }
+            }
+            else {
+                propertySet.insert("IsNetworkRequired", CloudExperienceHostAPI.UtilStaticsCore.isNetworkRequired);
+            }
             return propertySet;
         }
         static GetWiFiHostedApplicationArgumentsWcosDefaults() {
